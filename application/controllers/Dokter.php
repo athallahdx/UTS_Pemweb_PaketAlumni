@@ -1,6 +1,6 @@
 <?php
 
-class Dokter extends CI_Controller
+class Dokter extends My_Controller
 {
 	public function __construct()
 	{
@@ -9,6 +9,7 @@ class Dokter extends CI_Controller
 		$this->load->model('Dokter_models');
 		$this->load->helper('form');
 		$this->load->library('form_validation');
+		$this->check_login_only();
 	}
 
 	public function index()

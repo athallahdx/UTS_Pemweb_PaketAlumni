@@ -1,3 +1,5 @@
+<?php var_dump($user); ?>
+
 <h1 class="text-center mb-4">Dashboard</h1>
 <div class="row">
             <div class="col-md-3">
@@ -33,3 +35,4 @@
                 </div>
             </div>
         </div>
+<a href=<?= base_url('auth/logout') ?> class="text-danger">Log Out</a>

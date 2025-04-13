@@ -1,12 +1,13 @@
 <?php
 
-class Poli extends CI_Controller
+class Poli extends My_Controller
 {
 	public function __construct()
 	{
 		parent::__construct();
 		$this->load->model('Poli_models');
 		$this->load->helper('url');
+		$this->check_login_only();
 	}
 
 	public function index()

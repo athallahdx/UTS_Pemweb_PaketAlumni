@@ -23,7 +23,7 @@
             <?php endforeach; ?>
         <?php else : ?>
             <tr>
-                <td colspan="3" class="text-center">Tidak ada data dokter.</td>
+                <td colspan="4" class="text-center">Tidak ada data dokter.</td>
             </tr>
         <?php endif; ?>
     </tbody>

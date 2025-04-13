@@ -2,17 +2,20 @@
 
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Auth extends CI_Controller
+class Auth extends My_Controller
 {
 	public function __construct()
 	{
 		parent::__construct();
 		$this->load->model('Auth_models');
 		$this->load->helper('url_helper');
+		// $this->check_guest_only();
 	}
 
 	public function register()
 	{
+		$this->check_guest_only();
+
 		$data['title'] = 'Register';
 		$data['content'] = 'auth/register';
 
@@ -21,6 +24,7 @@ class Auth extends CI_Controller
 
 	public function register_user()
 	{
+		$this->check_guest_only();
 		$this->load->helper('form');
 		$this->load->library('form_validation');
 
@@ -45,7 +49,7 @@ class Auth extends CI_Controller
 
 	public function login()
 	{
-		$data['users'] = $this->Auth_models->getAllUsers();
+		$this->check_guest_only();
 		$data['title'] = 'Login';
 		$data['content'] = 'auth/login';
 
@@ -54,6 +58,7 @@ class Auth extends CI_Controller
 
 	public function login_user()
 	{
+		$this->check_guest_only();
 		$this->load->helper('form');
 		$this->load->library('form_validation');
 
@@ -69,7 +74,7 @@ class Auth extends CI_Controller
 			$user = $this->Auth_models->login($username, $password);
 
 			if ($user) {
-				$this->session->set_userdata('user_id', $user->id);
+				$this->session->set_userdata('id_user', $user->id_user);
 				redirect('dashboard');
 			} else {
 				redirect('auth/login');
@@ -79,6 +84,8 @@ class Auth extends CI_Controller
 
 	public function logout()
 	{
+		$this->check_login_only();
+		$this->session->unset_userdata('id_user');
 		$this->session->sess_destroy();
 		redirect('auth/login');
 	}
