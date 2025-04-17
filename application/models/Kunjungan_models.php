@@ -2,67 +2,69 @@
 
 class Kunjungan_models extends CI_Model
 {
+	protected $table = 'kunjungan';
+	protected $primaryKey = 'id_kunjungan';
+
 	public function __construct()
 	{
 		parent::__construct();
 		$this->load->database();
 	}
 
-	public function getAllKunjungan()
+	// Get all records
+	public function getAll()
 	{
-		$query = $this->db->get('kunjungan');
-		return $query->result();
+		return $this->db->get($this->table)->result();
 	}
 
-	public function getAllKunjunganByUser($id_user)
+	// Get by primary key
+	public function getById($id)
 	{
-		$this->db->where('id_user', $id_user);
-		$query = $this->db->get('kunjungan');
-		return $query->result();
+		return $this->db->get_where($this->table, [$this->primaryKey => $id])->row();
 	}
 
-	public function getKunjunganById($id)
+	// Insert a new record
+	public function insert(array $data)
 	{
-		$this->db->where('id_kunjungan', $id);
-		$query = $this->db->get('kunjungan');
-		return $query->row();
+		return $this->db->insert($this->table, $data);
 	}
 
-	public function insertKunjungan($data)
+	// Update a record
+	public function update($id, array $data)
 	{
-		return $this->db->insert('kunjungan', $data);
+		return $this->db->update($this->table, $data, [$this->primaryKey => $id]);
 	}
 
-	public function updateKunjungan($id, $data)
+	// Delete a record
+	public function delete($id)
 	{
-		$this->db->where('id_kunjungan', $id);
-		return $this->db->update('kunjungan', $data);
+		return $this->db->delete($this->table, [$this->primaryKey => $id]);
 	}
 
-	public function deleteKunjungan($id)
+	// Get by a specific column
+	private function getByColumn($column, $value)
 	{
-		$this->db->where('id_kunjungan', $id);
-		return $this->db->delete('kunjungan');
+		return $this->db->get_where($this->table, [$column => $value])->result();
 	}
 
-	public function getKunjunganByPasien($id_pasien)
+	// Specific get methods using getByColumn
+	public function getByUser($id_user)
 	{
-		$this->db->where('id_pasien', $id_pasien);
-		$query = $this->db->get('kunjungan');
-		return $query->result();
+		return $this->getByColumn('id_user', $id_user);
 	}
 
-	public function getKunjunganByDokter($id_dokter)
+	public function getByPasien($id_pasien)
 	{
-		$this->db->where('id_dokter', $id_dokter);
-		$query = $this->db->get('kunjungan');
-		return $query->result();
+		return $this->getByColumn('id_pasien', $id_pasien);
 	}
 
-	public function getKunjunganByPoli($id_poli)
+	public function getByDokter($id_dokter)
 	{
-		$this->db->where('id_poli', $id_poli);
-		$query = $this->db->get('kunjungan');
-		return $query->result();
+		return $this->getByColumn('id_dokter', $id_dokter);
+	}
+
+	public function getByPoli($id_poli)
+	{
+		return $this->getByColumn('id_poli', $id_poli);
 	}
 }
