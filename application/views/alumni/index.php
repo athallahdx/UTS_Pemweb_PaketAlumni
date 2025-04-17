@@ -70,8 +70,8 @@ foreach ($alumnus as $alumni) {
 
 
 
-	<div class="table-main flex justify-center mt-4">
-		<div class="flex justify-center w-full">
+	<div class="table-main flex justify-center mt-4 mb-16">
+		<div class="flex justify-center w-full ">
 			<table id="studentsTable" class="">
 				<thead>
 				<tr class="bg-gray-200">
