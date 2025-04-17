@@ -1,0 +1,25 @@
+{
+	"scripts": {
+		"dev": "npx tailwindcss -i ./public/css/input.css -o ./public/css/output.css --watch"
+	},
+	"name": "uts_pemweb_paketalumni",
+	"version": "1.0.0",
+	"main": "index.js",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/athallahdx/UTS_Pemweb_PaketAlumni.git"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/athallahdx/UTS_Pemweb_PaketAlumni/issues"
+	},
+	"homepage": "https://github.com/athallahdx/UTS_Pemweb_PaketAlumni#readme",
+	"description": "",
+	"devDependencies": {
+		"autoprefixer": "^10.4.21",
+		"postcss": "^8.5.3",
+		"tailwindcss": "^3.4.17"
+	}
+}
